@@ -2,7 +2,7 @@ import './App.css'
 import * as React from 'react';
 import {Header, Footer, Lab_list, Content, Button, Home,  Menu} from './components'
 import { Routes, Route, Link } from 'react-router-dom'
-
+import { LoginForm } from './components/My_lab/Lab_5';
 
 function App() {
 
