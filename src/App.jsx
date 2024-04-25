@@ -31,6 +31,7 @@ function App() {
         <Route path='/' element={<Home/>}/> 
         <Route path='/Lab_2' element={<Button/>}/>
         <Route path='/Lab_4' element={<Header/>}/>
+        <Route path='/Lab_5' element={<LoginForm/>}/>
         </Routes>
       </Content>
       <Footer>
