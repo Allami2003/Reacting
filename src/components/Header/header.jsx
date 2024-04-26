@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,11 +9,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-
+import Menu from '../Menu/menu';
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 function MyApp({children}) {
+
+
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
+
+
     return (
       <Box
         sx={{
@@ -29,14 +34,20 @@ function MyApp({children}) {
       >
         <AppBar position="static">
         <Toolbar>
-          <IconButton
+        <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
             sx={{ mr: 3 }}
+            onClick={()=> <Menu>
+            <h2>Меню</h2>
+            <li><Link to={'/'}>Главная</Link></li>
+            <li><Link to={'/meinfo'}>О себе</Link></li>
+            </Menu>}
+
           >
-            <MenuIcon />
+            <MenuIcon ></MenuIcon>
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Главное меню
@@ -51,8 +62,9 @@ function MyApp({children}) {
     );
   }
 
+
 export default function Header({children}){
-    const [mode, setMode] = React.useState('light');
+    const [mode, setMode] = React.useState('dark');
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
