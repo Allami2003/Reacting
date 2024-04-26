@@ -10,7 +10,7 @@ const Lab_list = () =>{
         <li><Link to={'/lab_5'}>Лабораторная 5</Link></li>
         <li><Link to={'/lab_6'}>Лабораторная 6</Link></li>
         <li><Link to={'/lab_6_1'}>Лабораторная 6_1</Link></li>
-        <li><Link to={'/lab_7'}>Лабораторная 7</Link></li>
+        <li><Link to={'/'}>Лабораторная 7</Link></li>
         <li><Link to={'/lab_8'}>Лабораторная 8</Link></li>
         <li><Link to={'/lab_9'}>Лабораторная 9</Link></li>
       </ul>

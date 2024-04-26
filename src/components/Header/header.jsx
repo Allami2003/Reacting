@@ -45,12 +45,6 @@ function MyApp({children}) {
           >
             <MenuIcon ></MenuIcon>
           </IconButton>
-          {isOpen ? (
-          <Menu isOper={isOpen} >
-            <h2>Меню</h2>
-            <li><Link to={'/'}>Главная</Link></li>
-            <li><Link to={'/meinfo'}>О себе</Link></li>
-            </Menu>):null}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Главное меню
           </Typography>
@@ -59,6 +53,11 @@ function MyApp({children}) {
         </IconButton>
         </Toolbar>
       </AppBar>
+      {isOpen ? (
+          <Menu isOper={isOpen} >
+            <li><Link to={'/'}>Главная</Link></li>
+            <li><Link to={'/meinfo'}>О себе</Link></li>
+            </Menu>):null}
       <div className='about'>{children}</div>
       </Box>
     );

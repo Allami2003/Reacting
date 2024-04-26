@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom'
 import { LoginForm } from './components/My_lab/Lab_5';
 import MyApp from './components/My_lab/Lab_6_1';
 import DataGridDemo from './components/My_lab/Lab_8';
+import  {TApp} from './components/RTK/Query';
+
 function App() {
   const [studentList,setStudentList]=React.useState([]);
   React.useEffect(()=>{
@@ -34,6 +36,7 @@ function App() {
         <Route path='/Lab_6' element={<GetList studentList={studentList} />}/>
         <Route path='/Lab_6_1' element={<MyApp />}/>
         <Route path='/Lab_8' element={<DataGridDemo />}/>
+        <Route path='/lab_9' element={<TApp/>}/>
         </Routes>
       </Content>
       <Footer>

@@ -1,58 +1,34 @@
-import {
-    useQuery,
-    useMutation,
-    useQueryClient,
-    QueryClient,
-    QueryClientProvider,
-  } from 'react-query';
-  
-  import { getTodos, postTodo } from 'api';
-  
-  // Создаем клиента
-  const queryClient = new QueryClient();
-  
-  import { useQuery } from 'react-query';
+import {QueryClient,QueryClientProvider, useQuery,} from 'react-query';
+const queryClient = new QueryClient();
 
-  function App() {
-    const info = useQuery('todos', fetchTodoList);
-  }
-  
- export default function Todos() {
-    // Получаем доступ к клиенту
-    const queryClient = useQueryClient();
-  
-    // Запрос
-    const query = useQuery('todos', getTodos);
-  
-    // Мутация
-    const mutation = useMutation(postTodo, {
-      onSuccess: () => {
-        // Инвалидация и обновление
-        queryClient.invalidateQueries('todos');
-      },
-    });
-  
-    return (
-      <div>
-        <ul>
-          {query.data.map((todo) => (
-            <li key={todo.id}>{todo.title}</li>
-          ))}
-        </ul>
-  
-        <button
-          onClick={() => {
-            mutation.mutate({
-              id: Date.now(),
-              title: 'Привет',
-            });
-          }}
-        >
-          Добавить задачу
-        </button>
-      </div>
+export function TApp() {
+  return(
+    <QueryClientProvider client={queryClient}>
+    <Example />
+    </QueryClientProvider>
+  )
+};
 
-    );
-  }
-  
-  render(<App />, document.getElementById('root'));
+function Example() {
+  const { isLoading, IsError,error, data } = useQuery(
+    'repoData',
+    () =>
+      fetch(
+        'https://api.github.com/repositories/207645083'
+      ).then((response) => response.json())
+  );
+
+  if (isLoading) return <p>Загрузка...</p>;
+
+  if (IsError) return <p>Ошибка: {error.message}</p>;
+
+  return (
+    <div>
+      <h1>{data.name}</h1>
+      <p>{data.description}</p>
+      <strong>👀 {data.subscribers_count}</strong>{' '}
+      <strong>✨ {data.stargazers_count}</strong>{' '}
+      <strong>🍴 {data.forks_count}</strong>
+    </div>
+  );
+}
