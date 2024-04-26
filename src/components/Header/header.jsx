@@ -17,7 +17,7 @@ function MyApp({children}) {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
 
-
+  const [isOpen,setOpen]=React.useState(false);
     return (
       <Box
         sx={{
@@ -40,15 +40,17 @@ function MyApp({children}) {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 3 }}
-            onClick={()=> <Menu>
-            <h2>Меню</h2>
-            <li><Link to={'/'}>Главная</Link></li>
-            <li><Link to={'/meinfo'}>О себе</Link></li>
-            </Menu>}
+            onClick={()=>setOpen(!isOpen)}
 
           >
             <MenuIcon ></MenuIcon>
           </IconButton>
+          {isOpen ? (
+          <Menu isOper={isOpen} >
+            <h2>Меню</h2>
+            <li><Link to={'/'}>Главная</Link></li>
+            <li><Link to={'/meinfo'}>О себе</Link></li>
+            </Menu>):null}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Главное меню
           </Typography>
